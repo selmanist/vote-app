@@ -69,6 +69,7 @@ const AddContact = () => {
                   name="name"
                   value={newContact.name}
                   onChange={(e) => setInputState(e)}
+                  data-testid="contact-name"
                   required
                 />
               </div>
@@ -82,6 +83,7 @@ const AddContact = () => {
                   name="email"
                   value={newContact.email}
                   onChange={(e) => setInputState(e)}
+                  data-testid="contact-email"
                 />
               </div>
             </div>

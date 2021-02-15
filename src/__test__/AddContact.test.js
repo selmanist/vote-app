@@ -1,8 +1,9 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import Contacts from "../components/Contacts";
+import AddContact from "../components/AddContact";
 import ContextProvider from "../context";
+import { BrowserRouter as Router } from "react-router-dom";
 
 let container = null;
 
@@ -17,17 +18,19 @@ afterEach(() => {
   container = null;
 });
 
-it("render contacts", async () => {
-  
+it("render contact form", async () => {
   await act(async () => {
     render(
       <ContextProvider>
-        <Contacts />
+        <Router>
+          <AddContact />
+        </Router>
       </ContextProvider>,
       container
     );
   });
 
-  expect(container.textContent).toBe("Sort by:Votes DescendingVotes Ascending");
-
+  expect(container.querySelector("[data-testid='contact-name']").getAttribute("placeholder")).toEqual("Enter Name");
+  expect(container.querySelector("[data-testid='contact-email']").getAttribute("placeholder")).toEqual("Enter Email");
+  
 });
